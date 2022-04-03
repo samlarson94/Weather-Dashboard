@@ -1,0 +1,40 @@
+* {
+margin: 0px;
+padding: 0px;
+}
+
+header {
+    text-align: center;
+    width: 100vw;
+    height: 50px;
+    color: white;
+    background-image: linear-gradient(to right, rgba(44, 54, 141, 0), rgb(4, 0, 255));
+}
+.search-area {
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.search-area>h2 {
+    font-weight: bolder;
+}
+
+.weather-data-today {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.forecast-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+
+}
