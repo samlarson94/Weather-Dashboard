@@ -6,17 +6,16 @@ var windToday = document.getElementById("wind");
 var humidityToday = document.getElementById("humidity");
 var uvToday = document.getElementById("uv-index");
 var uvGraphic = document.getElementById("uv-graphic");
-
-//Pull information for today's date
-
+var windDirect = document.getElementById("wind-direct");
+var weatherEmoji = document.getElementById("weather-icon").src;
 
 //Weather Data - Take user input and create new url for each city
 
-var api = "https://api.openweathermap.org/data/2.5/weather?";
+var api = "https://api.openweathermap.org/data/2.5/weather?q=";
 //Make city a dynamic variable - add directly to setup function
-// var city = "Minneapolis";
+// var city = "Minneapolis"; --> Moved inside setup function (input value)
 var apiKey =  "&appid=2e29086a1bb8840c610e0d65481f5462";
-var units = "&units=metric";
+var units = "&units=imperial";
 
 // searchURL = api + city + apiKey;
 var weather;
@@ -24,32 +23,82 @@ var search;
 var button = document.getElementById("submit");
 button.addEventListener("click", setup);
 
-
+//solved event default issue
 function setup(e) {
     e.preventDefault();
     search = document.querySelector('input').value;
     console.log("setup called");
     console.log(search); 
-    weatherCall()
+    weatherCall();
+    oneCall();
+    
 };
 
 function weatherCall() {
     var searchURL = api + search + apiKey + units;
-    $.getJSON(searchURL, gotData);  //Grab information and display using ajax function
-    console.log("weathercall triggered");
+    // $.getJSON(searchURL, gotData);  
+    //Grab information and display using ajax/fetch function
+fetch(searchURL)
+.then(response => response.json())
+.then(data => gotData(data))
+
+    .catch(err => alert("Wrong or Misspelled City Name")) 
 };
 
 function gotData(data) {
     weather = data;
+    console.log(weather);
+    draw();
 };
 
 function draw() {
     if (weather) {
+        console.log("draw function called");
+        var cityName = weather.name;
+        cityHeader.innerText = cityName;
+        var weatherIcon = weather.weather[0].icon;
+        console.log(weatherIcon);
+        // weatherEmoji = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         var temp = weather.main.temp;
+        tempToday.innerText = "Temp: " + temp + " F";
         var humidity = weather.main.humidity;
+        humidityToday.innerText = "Humidity: " + humidity + "%";
         var windSpeed = weather.wind.speed;
-        var uvIndex
-        cityHeader.innerText = temp;
+        windToday.innerText = "Wind: " + windSpeed + " knot";
+        var windDirection = weather.wind.deg;
+        windDirect.innerText = "Wind Direction: " + windDirection + " deg";
+        
+        lat = weather.coord.lat;
+        long = weather.coord.long;
+    };
+};
+
+//City data to push into One Call API for additional information
+var lat 
+var long
+
+var oneCallAPI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + long + apiKey + units;
+
+function oneCall() {
+    var oneCallURL = oneCallAPI;
+  
+fetch(oneCallURL)
+.then(response => response.json())
+.then(data => gotDataOneCall(data))
+
+    .catch(err => alert("Wrong or Misspelled City Name")) //alert not currently displaying on UI, only console. 
+};
+
+function gotDataOneCall(data) {
+    weatherOne = data;
+    console.log(weather);
+    drawOneCall();
+};
+
+function drawOneCall() {
+    if (weatherOne) {
+        console.log("drawOne function called");
+
     };
 };
 
