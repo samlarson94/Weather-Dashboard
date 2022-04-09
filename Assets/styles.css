@@ -10,6 +10,10 @@ header {
     color: white;
     background-image: linear-gradient(to right, rgba(44, 54, 141, 0), rgb(4, 0, 255));
 }
+.body {
+    background-image: 
+}
+
 .search-area {
     padding: 10px;
     margin: 10px 0px;

@@ -1,4 +1,10 @@
 //Var's for Today's Weather (per City)
+const timeEl = document.getElementById("current-time")
+const dateEl = document.getElementById("current-date")
+const weatherEl = document.getElementById("weather-icon")
+
+const weatherForecastEl = document.getElementById("weather-forecast")
+
 var cityHeader = document.getElementById("selectedCity")
 var weatherToday = document.getElementById("weater-date-today");
 var tempToday = document.getElementById("temp");
@@ -8,6 +14,24 @@ var uvToday = document.getElementById("uv-index");
 var uvGraphic = document.getElementById("uv-graphic");
 var windDirect = document.getElementById("wind-direct");
 var weatherEmoji = document.getElementById("weather-icon").src;
+
+// === Current Date/Time Interval ===
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+setInterval(() => {
+    const time = new Date();
+    const month = time.getMonth()
+    const date = time.getDate();
+    const day = time.getDay();
+    const hours = time.getHours();
+    const hoursIn12HrFormat = hours >= 13 ? hours %12: hours; //truncated if conditional
+    const minute = time.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM'; //truncated if conditional
+
+    timeEl.innerHTML = hoursIn12HrFormat + ':' + minute + " " + ampm;
+    dateEl.innerHTML = days[day] + ", " + months[month] + " "+ date;
+
+}, 1000)
 
 //Weather Data - Take user input and create new url for each city
 

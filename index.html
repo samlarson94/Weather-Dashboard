@@ -13,6 +13,7 @@
         <h1>Weather Dashboard</h1>
     </header>
 
+ <!-- Weather Search Aside -->
     <main> 
         <body class="container vw100">
             <div class="d-flex row">
@@ -29,21 +30,27 @@
                   </ul>
                 </div>
               </aside>
+            
+<!-- Current Weather Display -->
               <div class="col-9" id="main">
                     <div class="weather-data-today">
-                        <h1 id="selectedCity"></h1>
-                          <p id="currrent-date"></p>
-                          <img id="weather-icon" src="">
-                        
+                      <div class="location-and-date">
+                        <h3 id="selectedCity"></h3>
+                          <span id="current-date" class="current-date"></span>
+                          <span id="current-time" class="current-time"></span>
+                          <span id="weather-icon" class="weather-icon"></span>
+                      </div>
                         <p id="temp"></p>
                         <p id="wind"></p>
                         <p id="wind-direct"></p>
                         <p id="humidity"></p>
                         <p id="uv-index">UV Here <span id="uv-graphic">UV graphic Here</span></p>
                     </div>
+                  
+<!-- Future Forecasts -->
                     <h2>5-Day Forecast:</h2>
                     <div class="forecast-container">
-                        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card text-white bg-dark mb-3" id="weather-forecast" style="max-width: 18rem;">
                             <div class="card-header" id="date-1">Date #1</div>
                             <div class="card-body">
                               <p class="card-title" id="forecast-emoji-1">Emoji Here</p>
@@ -52,7 +59,7 @@
                               <p class="card-text" id="humidity-1">Humidity</p>
                             </div>
                         </div>
-                        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card text-white bg-dark mb-3" id="weather-forecast" style="max-width: 18rem;">
                           <div class="card-header" id="date-2">Date #2</div>
                           <div class="card-body">
                             <p class="card-title" id="forecast-emoji-2">Emoji Here</p>
@@ -61,7 +68,7 @@
                             <p class="card-text" id="humidity-2">Humidity</p>
                           </div>
                       </div>
-                      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                      <div class="card text-white bg-dark mb-3" id="weather-forecast" style="max-width: 18rem;">
                         <div class="card-header" id="date-3">Date #3</div>
                         <div class="card-body">
                           <p class="card-title" id="forecast-emoji-3">Emoji Here</p>
@@ -70,7 +77,7 @@
                           <p class="card-text" id="Humidity-3">Humidity</p>
                         </div>
                     </div>
-                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card text-white bg-dark mb-3" id="weather-forecast" style="max-width: 18rem;">
                       <div class="card-header" id="date-4">Date #4</div>
                       <div class="card-body">
                         <p class="card-title" id="forecast-emoji-4">Emoji Here</p>
@@ -79,7 +86,7 @@
                         <p class="card-text" id="Humidity-4">Humidity</p>
                       </div>
                   </div>
-                  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                  <div class="card text-white bg-dark mb-3" id="weather-forecast" style="max-width: 18rem;">
                     <div class="card-header" id="date-5">Date #5</div>
                     <div class="card-body">
                       <p class="card-title" id="forecast-emoji-5">Emoji Here</p>
