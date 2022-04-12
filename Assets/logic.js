@@ -13,7 +13,10 @@ var humidityToday = document.getElementById("humidity");
 var uvToday = document.getElementById("uv-index");
 var uvGraphic = document.getElementById("uv-graphic");
 var windDirect = document.getElementById("wind-direct");
-var weatherEmoji = document.getElementById("weather-icon").src;
+var weatherEmoji = document.getElementById("weather-icon");
+
+var lat;
+var long;
 
 // === Current Date/Time Interval ===
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -30,8 +33,9 @@ setInterval(() => {
 
     timeEl.innerHTML = hoursIn12HrFormat + ':' + minute + " " + ampm;
     dateEl.innerHTML = days[day] + ", " + months[month] + " "+ date;
-
 }, 1000)
+
+// Reference = https://www.youtube.com/watch?v=6trGQWzg2AI&ab_channel=AsishGeorgeTech
 
 //Weather Data - Take user input and create new url for each city
 
@@ -54,7 +58,6 @@ function setup(e) {
     console.log("setup called");
     console.log(search); 
     weatherCall();
-    oneCall();
     
 };
 
@@ -82,7 +85,7 @@ function draw() {
         cityHeader.innerText = cityName;
         var weatherIcon = weather.weather[0].icon;
         console.log(weatherIcon);
-        // weatherEmoji = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+        weatherEmoji.setAttribute("src", "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png" );
         var temp = weather.main.temp;
         tempToday.innerText = "Temp: " + temp + " F";
         var humidity = weather.main.humidity;
@@ -93,15 +96,18 @@ function draw() {
         windDirect.innerText = "Wind Direction: " + windDirection + " deg";
         
         lat = weather.coord.lat;
-        long = weather.coord.long;
+        long = weather.coord.lon;
     };
 };
 
 //City data to push into One Call API for additional information
-var lat 
-var long
 
-var oneCallAPI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + long + apiKey + units;
+if (lat !== undefined && long !== undefined) {
+    var oneCallAPI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + long + apiKey + units;
+    oneCall();
+}
+
+
 
 function oneCall() {
     var oneCallURL = oneCallAPI;
@@ -125,6 +131,7 @@ function drawOneCall() {
 
     };
 };
+
 
 //Declare for Date-1's Weather
 var date1 = document.getElementById("date-1")

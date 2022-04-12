@@ -4,19 +4,38 @@ padding: 0px;
 }
 
 header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 10px;
+    margin: 10px;
     width: 100vw;
     height: 50px;
-    color: white;
-    background-image: linear-gradient(to right, rgba(44, 54, 141, 0), rgb(4, 0, 255));
+    color: black;
+    background-color:whitesmoke;
+    border: 2px solid black;
+    border-radius: 5px;
 }
-.body {
-    background-image: 
+body {
+    background-image: url("./images/jorge-vasconez-c4cWawGBFv8-unsplash.jpg");
+    background-color: #CCCC;
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+
 }
 
 .search-area {
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 20px;
     margin: 10px 0px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
 }
 
 .search-area>h2 {
@@ -27,12 +46,18 @@ header {
     border: 2px solid black;
     padding: 10px;
     margin: 10px 0px;
+    border-radius: 5px;
+    background-color: whitesmoke;
 }
 
 .forecast-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: whitesmoke;
 }
 
 .list-group {
